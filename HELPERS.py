@@ -89,24 +89,10 @@ def replace_rpc_text() -> str:
             f"<html><head><title>{RPC_TITLE}</title></head><body>",
         )
 
-    # Puts text at the bottom, maybe put at the top in the future?
-    RPC_CUSTOM_TEXT = getenv("RPC_CUSTOM_TEXT", "")
-    if len(RPC_CUSTOM_TEXT) > 0:
-        RPC_ROOT_HTML = RPC_ROOT_HTML.replace(
-            "Available endpoints:<br><br>",
-            f"{RPC_CUSTOM_TEXT}<br>Available endpoints:<br><br>",
-        )
-
     # add cache_info endpoint. THIS REMOVES BLANK 'Available endpoints:<br><br>'
     RPC_ROOT_HTML = RPC_ROOT_HTML.replace(
         "Available endpoints:<br><br>",
         f'<a href="//{{BASE_URL}}/cache_info">//{{BASE_URL}}/cache_info</a><br><br>',
-        # we replace the BASE_URL on the call to the root endpoint
-    )
-
-    RPC_ROOT_HTML = RPC_ROOT_HTML.replace(
-        "/cache_info</a><br><br>",
-        f'/cache_info</a><br><a href="//{{BASE_URL}}/prices">//{{BASE_URL}}/prices</a><br><br>',
         # we replace the BASE_URL on the call to the root endpoint
     )
 
